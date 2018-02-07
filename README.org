@@ -54,3 +54,7 @@ org-pelican also add pelican plugins support, which add following features.
   org-pelican plugin to copy .org file to output folder.
 
 - [ ] others ?
+
+* Changes from coldnew version
+
+- Can use multi-word tags split by commas.
