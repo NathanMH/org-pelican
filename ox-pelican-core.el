@@ -40,31 +40,43 @@
 
 ;; pelican metadata
 (defvar org-pelican--options-alist
-  '((:date     "DATE"       nil     nil)
-    (:category "CATEGORY"   nil     nil)
-    (:tags     "TAGS"       nil     nil)
-    (:url      "URL"        nil     nil)
-    (:save_as  "SAVE_AS"    nil     nil)
-    (:slug     "SLUG"       nil     nil)
-    (:status   "STATUS"     nil     nil)
+  '((:date     "DATE"        nil     nil)
+    (:category "CATEGORY"    nil     nil)
+    (:tags     "TAGS"        nil     nil)
+    (:url      "URL"         nil     nil)
+    (:save_as  "SAVE_AS"     nil     nil)
+    (:slug     "SLUG"        nil     nil)
+    (:status   "STATUS"      nil     nil)
     ))
 
 
 ;;;; Internal functions
 
+;; Old tag function
+;; (defun org-pelican--protect-tag (tag)
+;;   "Convert:
+;;        _     ->  <space>
+;;        @     ->  -
+;;      <space> ->  ,
+;; "
+;;   (replace-regexp-in-string
+;;    "_" " "
+;;    (replace-regexp-in-string
+;;     " " ","
+;;     (replace-regexp-in-string
+;;      "@" "-"
+;;      tag))))
+
 (defun org-pelican--protect-tag (tag)
   "Convert:
        _     ->  <space>
-       @     ->  -
-     <space> ->  ,
-"
+       @     ->  - "
+
   (replace-regexp-in-string
    "_" " "
-   (replace-regexp-in-string
-    " " ","
     (replace-regexp-in-string
      "@" "-"
-     tag))))
+     tag)))
 
 (defun org-pelican--protect-string (str)
   "Convert \" -> &quot;"
@@ -206,7 +218,7 @@ INFO is a plist used as a communication channel.
      (funcall metainfo "date" date)
 
      (funcall metainfo "lang" lang)
-     (funcall metainfo "description" description)
+     (funcall metainfo "summary" description)
      (funcall metainfo "keywords" keywords)
 
      (funcall metainfo "url" url)
